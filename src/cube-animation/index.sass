@@ -1,0 +1,37 @@
+@import '../../node_modules/play-web-core/sass/main'
+// @import '../../node_modules/play-web-core/sass/debug'
+
+#scene
+  -webkit-perspective: 1000
+  perspective: 1000
+
+#camera
+  transform-style: preserve-3d
+
+.cube
+
+.face
+  position: absolute
+  width: 400px
+  height: 400px
+  background-color: gray
+  opacity: 0.5
+  border: 1px solid black
+
+.front
+  transform: rotateY(90deg) translateZ(190px)
+
+.right
+  transform: rotateY(90deg) translateZ(190px)
+
+.back
+  transform: rotateY(90deg) translateZ(190px)
+
+.left
+  transform: rotateY(90deg) translateZ(190px)
+
+.top
+  transform: rotateY(90deg) translateZ(190px)
+
+.bottom
+  transform: rotateY(90deg) translateZ(190px)
