@@ -1,6 +1,6 @@
-# Play Prototype
+# Cube Unboxing - Creative Development
 
-A bare-bones repo for prototyping, featuring ES6, SASS, and BrowserSync.
+A creative 3d animation experience, bound to the browser's scroll
 
 # Setup
 
