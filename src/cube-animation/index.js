@@ -9,19 +9,56 @@
 var controller = new ScrollMagic.Controller();
 
 // dom elements
+var body = document.querySelector('body');
+var camera = document.getElementById('camera');
+var cube = document.querySelector('.cube');
 var topFace = document.querySelector('.top');
+var rightFace = document.querySelector('.right');
+var bottomFace = document.querySelector('.bottom');
+var leftFace = document.querySelector('.left');
+var frontFace = document.querySelector('.front');
+var backFace = document.querySelector('.back');
 
-// build tween (openLid)
-var openLid = new TimelineMax();
-openLid.to(topFace, 1, { transform:"rotateX(120deg) translateZ(100px) translateY(-175px)" });
 
+// 
+// SCENE 1
+// 
 
-// TweenMax.set(topFace, { transform: "rotateX(90deg) translateZ(0px) translateY(-200px)" });
+// build tween1
+var tween1 = new TimelineMax();
+tween1.to(camera, 1, { transform:"scale(0.5) rotateY(40deg) translate(calc(0% - 200px), 80%)" })
+tween1.to(topFace, 1, { transform:"rotateX(120deg) translateZ(100px) translateY(-175px)" }, "-=1")
+tween1.to(body, 1, { backgroundColor: 'white' }, "-=1");
 
 
 var scene1 = new ScrollMagic.Scene({ triggerElement: "#trigger1" })
-  // .setTween(openBox.to('.top', 1, { transform:"rotateX(120deg) translateZ(100px)" })) // trigger a TweenMax.to tween
-  .setTween(openLid) // trigger a TweenMax.to tween
-  // transform:"rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)"
+  .setTween(tween1) // trigger a TweenMax.to tween
   .addIndicators({name: "1 (duration: 0)"}) // add indicators (requires plugin)
+  .addTo(controller);
+
+
+
+// 
+// SCENE 2
+// 
+
+// build tween2
+var tween2 = new TimelineMax();
+tween2.to(cube, 0.5, { transform:"rotateX(180deg) rotateY(100deg)" })
+tween2.to(camera, 0.5, { transform:"scale(1) rotateY(0deg) translate(calc(50% - 200px), 20%)" }, "-=0.5")
+tween2.to(cube, 0.5, { transform:"rotateX(180deg) rotateY(90deg)" })
+tween2.to(topFace, 0.5, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=0.5")
+tween2.to(rightFace, 0.5, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=0.5")
+tween2.to(bottomFace, 0.5, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
+tween2.to(leftFace, 0.5, { transform:"rotateY(-20deg) rotateX(30deg) translateZ(530px)" }, "-=0.5")
+tween2.to(frontFace, 0.5, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=0.5") 
+tween2.to(backFace, 0.5, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=0.5");
+
+// tween2.to(topFace, 1, { transform:"rotateX(120deg) translateZ(100px) translateY(-175px)" }, "-=1")
+// tween2.to(body, 1, { backgroundColor: 'white' }, "-=1");
+
+
+var scene2 = new ScrollMagic.Scene({ triggerElement: "#trigger2" })
+  .setTween(tween2) // trigger a TweenMax.to tween
+  .addIndicators({name: "2 (duration: 0)"}) // add indicators (requires plugin)
   .addTo(controller);
