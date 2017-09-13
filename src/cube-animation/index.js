@@ -46,7 +46,7 @@ var scene1 = new ScrollMagic.Scene({ triggerElement: "#trigger1" })
 var tween2 = new TimelineMax();
 tween2.to(cube, 0.5, { transform:"rotateX(180deg) rotateY(100deg)" })
 tween2.to(camera, 0.5, { transform:"scale(1) rotateY(0deg) translate(calc(50% - 200px), 20%)" }, "-=0.5")
-tween2.to(cube, 0.5, { transform:"rotateX(180deg) rotateY(90deg)" })
+tween2.to(cube, 0.5, { transform:"rotateX(180deg) rotateY(90deg)" }, "-=0.3")
 tween2.to(topFace, 0.5, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=0.5")
 tween2.to(rightFace, 0.5, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=0.5")
 tween2.to(bottomFace, 0.5, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
