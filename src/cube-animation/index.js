@@ -20,6 +20,19 @@ var frontFace = document.querySelector('.front');
 var backFace = document.querySelector('.back');
 
 
+var start = new TimelineMax()
+.set(cube, { transform:"rotateX(180deg) rotateY(100deg)" })
+.set(camera, { transform:"scale(1) rotateY(0deg) translate(calc(50% - 200px), 20%)" }, "-=0.5")
+.set(topFace, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=0.5")
+.set(rightFace, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=0.5")
+.set(bottomFace, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
+.set(leftFace, { transform:"rotateY(-20deg) rotateX(30deg) translateZ(530px)" }, "-=0.5")
+.set(frontFace, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=0.5") 
+.set(backFace, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=0.5");
+
+var camRotation = new TimelineMax()
+.to(camera, -1, { transform:"scale(0.5) rotateY(-300deg)" })
+
 // 
 // SCENE 1
 // 
