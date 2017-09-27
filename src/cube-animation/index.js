@@ -34,6 +34,8 @@ var camRotation = new TimelineMax()
 .to(camera, 1.5, { rotationY: '780_cw', scale: 2, transformOrigin:"left center", ease: Linear.easeNone })
 .to(camera, 1, { scale: 0.5, x:"100%", }, "-=1")
 // to cube
+.to(cube, { transform:"rotateX(180deg) rotateY(100deg)" })
+.to(camera, { transform:"scale(1.5) rotateY(0deg) translate(calc(50% - 200px), 20%)"})
 .to(topFace, 0.5, { transform:"rotateX(90deg) translateZ(0px) translateY(-200px)"}, "-=0.5")
 .to(rightFace, 0.5, { transform:"rotateY(90deg) translateZ(200px)"}, "-=0.5")
 .to(bottomFace, 0.5, { transform:"rotateX(-90deg) translateZ(200px)"}, "-=0.5")
@@ -43,8 +45,6 @@ var camRotation = new TimelineMax()
 
 
 // var introAnimation = new TimelineMax()
-// .set(cube, { transform:"rotateX(180deg) rotateY(100deg)" })
-// .set(camera, { transform:"scale(1.5) rotateY(0deg) translate(calc(50% - 200px), 20%)"})
 
 
 
