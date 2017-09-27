@@ -22,7 +22,7 @@ var backFace = document.querySelector('.back');
 
 var start = new TimelineMax()
 .set(cube, { transform:"rotateX(180deg) rotateY(100deg)" })
-.set(camera, { transform:"scale(1) rotateY(0deg) translate(calc(50% - 200px), 20%)" }, "-=0.5")
+.set(camera, { transform:"scale(1.5) rotateY(0deg) translate(calc(50% - 200px), 20%)" }, "-=0.5")
 .set(topFace, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=0.5")
 .set(rightFace, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=0.5")
 .set(bottomFace, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
@@ -31,7 +31,18 @@ var start = new TimelineMax()
 .set(backFace, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=0.5");
 
 var camRotation = new TimelineMax()
-.to(camera, -1, { transform:"scale(0.5) rotateY(-300deg)" })
+.to(camera, 1.5, { rotationY: '720_cw', scale: 2, transformOrigin:"left center", ease: Linear.easeNone })
+.to(camera, 1, { scale: 0.5, x:"100%", }, "-=1");
+
+// _animateCircle() {
+//     new TimelineMax({
+//       repeat: -1
+//     }).to(this.circle, 3, {
+//       rotationY: '360_ccw',
+//       ease: Linear.easeNone
+//     });
+//   }
+// camRotation.repeat(2);
 
 // 
 // SCENE 1
