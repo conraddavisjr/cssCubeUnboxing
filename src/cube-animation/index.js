@@ -31,7 +31,7 @@ tween1.to(topFace, 1, { transform:"rotateX(120deg) translateZ(100px) translateY(
 tween1.to(body, 1, { backgroundColor: 'white' }, "-=1");
 
 
-var scene1 = new ScrollMagic.Scene({ triggerElement: "#trigger1" })
+var scene1 = new ScrollMagic.Scene({ offset: 100 })
   .setTween(tween1) // trigger a TweenMax.to tween
   .addIndicators({name: "1 (duration: 0)"}) // add indicators (requires plugin)
   .addTo(controller);
@@ -46,7 +46,6 @@ var scene1 = new ScrollMagic.Scene({ triggerElement: "#trigger1" })
 var tween2 = new TimelineMax();
 tween2.to(cube, 0.5, { transform:"rotateX(180deg) rotateY(100deg)" })
 tween2.to(camera, 0.5, { transform:"scale(1) rotateY(0deg) translate(calc(50% - 200px), 20%)" }, "-=0.5")
-tween2.to(cube, 0.5, { transform:"rotateX(180deg) rotateY(90deg)" }, "-=0.3")
 tween2.to(topFace, 0.5, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=0.5")
 tween2.to(rightFace, 0.5, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=0.5")
 tween2.to(bottomFace, 0.5, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
@@ -58,7 +57,7 @@ tween2.to(backFace, 0.5, { transform:"rotateY(170deg) rotateX(-20deg) translateZ
 // tween2.to(body, 1, { backgroundColor: 'white' }, "-=1");
 
 
-var scene2 = new ScrollMagic.Scene({ triggerElement: "#trigger2" })
+var scene2 = new ScrollMagic.Scene({ offset: 300 })
   .setTween(tween2) // trigger a TweenMax.to tween
   .addIndicators({name: "2 (duration: 0)"}) // add indicators (requires plugin)
   .addTo(controller);
