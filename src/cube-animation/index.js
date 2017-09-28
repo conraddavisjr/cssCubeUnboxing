@@ -18,9 +18,15 @@ var bottomFace = document.querySelector('.bottom');
 var leftFace = document.querySelector('.left');
 var frontFace = document.querySelector('.front');
 var backFace = document.querySelector('.back');
+var copyContainer = document.querySelector('.copyContainer');
 
+
+// 
+// INTRO ANIMATION
+// 
 
 var introAnimation = new TimelineMax()
+// set starting styles
 .set(cube, { transform:"rotateX(180deg) rotateY(100deg)" })
 .set(camera, { transform:"scale(1.5) rotateY(0deg) translate(calc(50% - 200px), 20%)" })
 .set(topFace, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" })
@@ -28,12 +34,11 @@ var introAnimation = new TimelineMax()
 .set(bottomFace, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" })
 .set(leftFace, { transform:"rotateY(-20deg) rotateX(30deg) translateZ(530px)" })
 .set(frontFace, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }) 
-.set(backFace, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" });
-
-var camRotation = new TimelineMax()
-.to(camera, 1.5, { rotationY: '780_cw', scale: 2, transformOrigin:"left center", ease: Linear.easeNone })
+.set(backFace, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" })
+// 
+.to(camera, 1.5, { rotationY: '780_cw', scale: 2, transformOrigin:"left center", ease: Linear.easeOut })
 .to(camera, 1, { scale: 0.5, x:"100%", }, "-=1")
-// to cube
+// transition to cube
 .to(cube, { transform:"rotateX(180deg) rotateY(100deg)" })
 .to(camera, { transform:"scale(1.5) rotateY(0deg) translate(calc(50% - 200px), 20%)"})
 .to(topFace, 0.5, { transform:"rotateX(90deg) translateZ(0px) translateY(-200px)"}, "-=0.5")
@@ -41,7 +46,19 @@ var camRotation = new TimelineMax()
 .to(bottomFace, 0.5, { transform:"rotateX(-90deg) translateZ(200px)"}, "-=0.5")
 .to(leftFace, 0.5, { transform:"rotateY(-90deg) translateZ(200px)"}, "-=0.5")
 .to(frontFace, 0.5, { transform:"translateZ(200px)"}, "-=0.5") 
-.to(backFace, 0.5, { transform: "rotateY(180deg) translateZ(200px)"}, "-=0.5");
+.to(backFace, 0.5, { transform: "rotateY(180deg) translateZ(200px)"}, "-=0.5")
+.to(copyContainer, 0.5, { transformOrigin:"left center", text: "Welcome to the box"}, "+=0.5")
+// shift camrea perspective
+.to(camera, 0.5, { rotationY: '850_cw'})
+.to(copyContainer, 0.5, { transformOrigin:"left center", transform: "translateZ(23vh) translateX(0px) translateY(-320px) rotateY(-70deg)" }, "-=0.5")
+
+
+// 
+// SCENE 1
+// 
+// var intro = new TimelineMax()
+// copyContainer.
+
 
 
 // var introAnimation = new TimelineMax()
