@@ -50,9 +50,13 @@ var introAnimation = new TimelineMax()
 .to(copyContainer, 0.5, { transformOrigin:"left center", text: "Welcome to the box"}, "+=0.5")
 // shift camrea perspective
 .to(camera, 0.5, { rotationY: '850_cw'})
-.to(copyContainer, 0.5, { transformOrigin:"left center", transform: "translateZ(23vh) translateX(0px) translateY(-320px) rotateY(-70deg)" }, "-=0.5")
-.to(camera, 1, { rotationX: '-20_ccw', rotationY: '900_cw'}, "-=0.3")
-.set(copyContainer, { transformOrigin:"right bottom", transform: "translateZ(221vh) translateX(-660px) translateY(-430px) rotateY(-72.6deg) rotate(0deg)" })
+.to(copyContainer, 0.5, { transformOrigin:"left center", transform: "translateZ(23vh) translateX(0px) translateY(-320px) rotateY(-70deg) rotate(0deg)" }, "-=0.5")
+// camera slight rotation
+.to(camera, 1, { rotationX: '-20_ccw', rotationY: '900_cw'}, "+=0.5")
+// slam the cube
+.to(copyContainer, 0.5, { transform: "translateZ(221vh) translateX(-660px) translateY(-430px) rotateY(-72.6deg) rotate(180deg)" })
+.to(cube, 0.5, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" }, "-=0.5")
+
 
 
 // 
