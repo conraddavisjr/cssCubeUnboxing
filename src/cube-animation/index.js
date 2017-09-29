@@ -51,6 +51,8 @@ var introAnimation = new TimelineMax()
 // shift camrea perspective
 .to(camera, 0.5, { rotationY: '850_cw'})
 .to(copyContainer, 0.5, { transformOrigin:"left center", transform: "translateZ(23vh) translateX(0px) translateY(-320px) rotateY(-70deg)" }, "-=0.5")
+.to(camera, 1, { rotationX: '-20_ccw', rotationY: '900_cw'}, "-=0.3")
+.set(copyContainer, { transformOrigin:"right bottom", transform: "translateZ(221vh) translateX(-660px) translateY(-430px) rotateY(-72.6deg) rotate(0deg)" })
 
 
 // 
