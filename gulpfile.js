@@ -3,12 +3,10 @@ const fs = require('fs')
 const chalk = require('chalk')
 const clean = require('gulp-clean')
 const copy = require('copy')
-const eslint = require('gulp-eslint')
 const gulp = require('gulp')
 const path = require('path')
 const sass = require('gulp-sass')
 const sassGlob = require('gulp-sass-glob')
-const sassLint = require('gulp-sass-lint')
 const webpack = require('webpack-stream')
 const BrowserSync = require('browser-sync').create()
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
@@ -124,7 +122,6 @@ function createBuildIndex(bundles) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, height=device-height">
       <title>Prototypes!</title>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Product+Sans:100,300,500" rel="stylesheet">
-      <link rel="shortcut icon" href="lib/favicon.png">
       <style>
         * { font-family: Product Sans, sans-serif; }
         ul { list-style-type: none; }
@@ -144,22 +141,6 @@ function getBundleFromChangeEvent(e) {
   return getBundle(folder)
 }
 
-function lintJS() {
-  return gulp.src(JS_FILES)
-    .pipe(eslint())
-    .pipe(eslint.format())
-}
-
-function lintCSS() {
-  return gulp.src(SASS_FILES)
-    .pipe(sassLint())
-    .pipe(sassLint.format())
-}
-
-gulp.task('lint', () => {
-  lintCSS()
-  lintJS()
-})
 
 gulp.task('build', () => {
   // For each prototype, create a unique bundle
@@ -180,14 +161,12 @@ gulp.task('watch', () => {
   // Watch JS files to compile ES6
   gulp.watch(JS_FILES, e => {
     const bundle = getBundleFromChangeEvent(e)
-    lintJS()
     compileJS(bundle, false)
   })
 
   // Watch SASS files to compile CSS
   gulp.watch(SASS_FILES, e => {
     const bundle = getBundleFromChangeEvent(e)
-    lintCSS()
     compileCSS(bundle, false)
   })
 
@@ -206,4 +185,4 @@ gulp.task('serve', () => {
   })
 })
 
-gulp.task('default', ['lint', 'build', 'watch', 'serve'])
+gulp.task('default', [ 'build', 'watch', 'serve'])

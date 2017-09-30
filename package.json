@@ -2,15 +2,14 @@
   "name": "google_play_prototype",
   "title": "Google Play Prototype",
   "version": "1.0.0",
-  "description": "A prototyping repo for Google Play marketing sites.",
+  "description": "An animation using GSAP.",
   "main": "",
   "scripts": {
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "https://webmaster.googlesource.com/<repo>"
+    "type": "git"
   },
   "keywords": [],
   "author": "Conrad Davis Jr. <conraddavisjr@gmail.com>",
