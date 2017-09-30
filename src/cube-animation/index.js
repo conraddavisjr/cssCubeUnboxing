@@ -19,6 +19,7 @@ var leftFace = document.querySelector('.left');
 var frontFace = document.querySelector('.front');
 var backFace = document.querySelector('.back');
 var copyContainer = document.querySelector('.copyContainer');
+var bgImage = document.querySelector('.bgImage');
 
 
 // 
@@ -78,6 +79,7 @@ function sceneTwo() {
 	var tl = new TimelineMax();
 
 	tl.to(copyContainer, 0.5, { opacity: 0 }, "-=1")
+	tl.to(bgImage, 1, {opacity: 1}, "-=1")
 	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '930_cw', scale: 1.5, y: -190 }, "-=1")
 	tl.to(topFace, 1, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=1")
 	tl.to(rightFace, 1, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=1")
