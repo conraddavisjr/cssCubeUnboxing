@@ -62,32 +62,41 @@ function sceneOne() {
 	tl.to(copyContainer, 0.5, { transform: "translateZ(221vh) translateX(-660px) translateY(-430px) rotateY(-72.6deg) rotate(180deg)" }, "-=0.5")
 	tl.to(cube, 0.5, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" }, "-=0.5")
 
-	tl.seek("s1_slam_cube")
+	return tl;
+
+	// tl.seek("s1_slam_cube")
 }
-
-// Create a master timeline
-var master = new TimelineMax()
-// add scene one to the master
-master.add(sceneOne(), "scene1");
-
 
 
 // 
 // SCENE 2
 // 
+// Make the box explode
+// 
+function sceneTwo() {
+	
+	var tl = new TimelineMax();
 
-// build tween2
-// var tween2 = new TimelineMax();
-// tween2.to(cube, 0.5, { transform:"rotateX(180deg) rotateY(100deg)" })
-// tween2.to(camera, 0.5, { transform:"scale(1) rotateY(0deg) translate(calc(50% - 200px), 20%)" }, "-=0.5")
-// tween2.to(topFace, 0.5, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=0.5")
-// tween2.to(rightFace, 0.5, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=0.5")
-// tween2.to(bottomFace, 0.5, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
-// tween2.to(leftFace, 0.5, { transform:"rotateY(-20deg) rotateX(30deg) translateZ(530px)" }, "-=0.5")
-// tween2.to(frontFace, 0.5, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=0.5") 
-// tween2.to(backFace, 0.5, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=0.5");
+	tl.to(cube, 0.5, { transform:"rotateX(180deg) rotateY(100deg)" })
+	tl.to(camera, 0.5, { transform:"scale(1) rotateY(0deg) translate(calc(50% - 200px), 20%)" }, "-=0.5")
+	tl.to(topFace, 0.5, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=0.5")
+	tl.to(rightFace, 0.5, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=0.5")
+	tl.to(bottomFace, 0.5, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
+	tl.to(leftFace, 0.5, { transform:"rotateY(-20deg) rotateX(30deg) translateZ(530px)" }, "-=0.5")
+	tl.to(frontFace, 0.5, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=0.5") 
+	tl.to(backFace, 0.5, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=0.5");
+
+	return tl;
+}
 
 
+// Create a master timeline
+var master = new TimelineMax()
+// add scene one to the master
+.add(sceneOne(), "scene1")
+.add(sceneTwo(), "scene2");
+
+// master.seek("scene2")
 
 // 
 // SCENE 1
