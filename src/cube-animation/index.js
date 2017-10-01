@@ -28,12 +28,10 @@ var bgImage = document.querySelector('.bgImage');
 
 function sceneOne() {
 	var tl = new TimelineMax();
-
-	tl.add("label");
 	
 	// set starting styles
 	tl.set(cube, { transform:"rotateX(180deg) rotateY(100deg)" })
-	tl.set(camera, { transform:"scale(1.5) rotateY(0deg) translate(calc(50% - 200px), 20%)" })
+	tl.set(camera, { transformOrigin:"left center", transform:"scale(1.5) rotateY(0deg) translateX(500px) translateY(10px)" })
 	tl.set(topFace, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" })
 	tl.set(rightFace, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" })
 	tl.set(bottomFace, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" })
@@ -41,11 +39,9 @@ function sceneOne() {
 	tl.set(frontFace, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }) 
 	tl.set(backFace, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" });
 	// 
-	tl.to(camera, 1.5, { rotationY: '780_cw', scale: 2, transformOrigin:"left center", ease: Linear.easeOut }, "label")
-	tl.to(camera, 1, { scale: 0.5, x:"100%", }, "-=1")
-	// transition to cube
-	tl.to(cube, { transform:"rotateX(180deg) rotateY(100deg)" })
-	tl.to(camera, { transform:"scale(1.5) rotateY(0deg) translate(calc(50% - 200px), 20%)"})
+	tl.to(camera, 1.5, { rotationY: '780_cw', x: "10%", scale: 0.5, transformOrigin:"left center", ease: Linear.easeOut })
+	// tl.to(camera, 1, { scale: 0.5, x:"100%", }, "-=1")
+	// // transition to cube
 	tl.to(topFace, 0.5, { transform:"rotateX(90deg) translateZ(0px) translateY(-200px)"}, "-=0.5")
 	tl.to(rightFace, 0.5, { transform:"rotateY(90deg) translateZ(200px)"}, "-=0.5")
 	tl.to(bottomFace, 0.5, { transform:"rotateX(-90deg) translateZ(200px)"}, "-=0.5")
@@ -53,15 +49,15 @@ function sceneOne() {
 	tl.to(frontFace, 0.5, { transform:"translateZ(200px)"}, "-=0.5") 
 	tl.to(backFace, 0.5, { transform: "rotateY(180deg) translateZ(200px)"}, "-=0.5")
 	tl.to(copyContainer, 0.5, { transformOrigin:"left center", text: "Welcome to the box"}, "+=0.5")
-	// shift camera perspective
-	tl.to(camera, 0.5, { rotationY: '850_cw'})
-	tl.to(copyContainer, 0.5, { transformOrigin:"left center", transform: "translateZ(23vh) translateX(0px) translateY(-320px) rotateY(-70deg) rotate(0deg)" }, "-=0.5")
-	// camera slight rotation
-	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '900_cw'}, "+=0.5")
-	// slam the cube
-	tl.add("s1_slam_cube")
-	tl.to(copyContainer, 0.5, { transform: "translateZ(221vh) translateX(-660px) translateY(-430px) rotateY(-72.6deg) rotate(180deg)" }, "-=0.5")
-	tl.to(cube, 0.5, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" }, "-=0.5")
+	// // shift camera perspective
+	// tl.to(camera, 0.5, { rotationY: '850_cw'})
+	// tl.to(copyContainer, 0.5, { transformOrigin:"left center", transform: "translateZ(23vh) translateX(0px) translateY(-320px) rotateY(-70deg) rotate(0deg)" }, "-=0.5")
+	// // camera slight rotation
+	// tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '900_cw'}, "+=0.5")
+	// // slam the cube
+	// tl.add("s1_slam_cube")
+	// tl.to(copyContainer, 0.5, { transform: "translateZ(221vh) translateX(-660px) translateY(-430px) rotateY(-72.6deg) rotate(180deg)" }, "-=0.5")
+	// tl.to(cube, 0.5, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" }, "-=0.5")
 
 	return tl;
 
@@ -97,7 +93,7 @@ function sceneTwo() {
 var master = new TimelineMax()
 // add scene one to the master
 .add(sceneOne(), "scene1")
-.add(sceneTwo(), "scene2", "-=2");
+// .add(sceneTwo(), "scene2");
 
 // master.seek("scene2")
 
