@@ -40,28 +40,23 @@ function sceneOne() {
 	tl.set(backFace, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" });
 	// 
 	tl.to(camera, 1.5, { rotationY: '780_cw', x: "10%", scale: 0.5, transformOrigin:"left center", ease: Linear.easeOut })
-	// tl.to(camera, 1, { scale: 0.5, x:"100%", }, "-=1")
 	// // transition to cube
-	tl.to(topFace, 0.5, { transform:"rotateX(90deg) translateZ(0px) translateY(-200px)"}, "-=0.5")
-	tl.to(rightFace, 0.5, { transform:"rotateY(90deg) translateZ(200px)"}, "-=0.5")
-	tl.to(bottomFace, 0.5, { transform:"rotateX(-90deg) translateZ(200px)"}, "-=0.5")
-	tl.to(leftFace, 0.5, { transform:"rotateY(-90deg) translateZ(200px)"}, "-=0.5")
-	tl.to(frontFace, 0.5, { transform:"translateZ(200px)"}, "-=0.5") 
-	tl.to(backFace, 0.5, { transform: "rotateY(180deg) translateZ(200px)"}, "-=0.5")
-	tl.to(copyContainer, 0.5, { transformOrigin:"left center", text: "Welcome to the box"}, "+=0.5")
+	tl.call(() => transitionToCube())
 	// // shift camera perspective
-	// tl.to(camera, 0.5, { rotationY: '850_cw'})
-	// tl.to(copyContainer, 0.5, { transformOrigin:"left center", transform: "translateZ(23vh) translateX(0px) translateY(-320px) rotateY(-70deg) rotate(0deg)" }, "-=0.5")
+	tl.to(camera, 0.5, { rotationY: '850_cw'})
+	tl.to(copyContainer, 0.5, { transformOrigin:"left center", text: "Welcome to the box"})
+	tl.to(copyContainer, 0.5, { transformOrigin:"left center", transform: "translateZ(23vh) translateX(0px) translateY(-320px) rotateY(-70deg) rotate(0deg)" }, "-=0.5")
 	// // camera slight rotation
-	// tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '900_cw'}, "+=0.5")
+	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '900_cw'}, "+=0.5")
 	// // slam the cube
-	// tl.add("s1_slam_cube")
-	// tl.to(copyContainer, 0.5, { transform: "translateZ(221vh) translateX(-660px) translateY(-430px) rotateY(-72.6deg) rotate(180deg)" }, "-=0.5")
-	// tl.to(cube, 0.5, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" }, "-=0.5")
+	tl.add("s1_slam_cube")
+	tl.to(copyContainer, 0.5, { transform: "translateZ(221vh) translateX(-660px) translateY(-430px) rotateY(-72.6deg) rotate(180deg)" }, "-=0.5", "s1_slam_cube")
+	tl.to(cube, 0.5, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" }, "-=0.5", "s1_slam_cube")
+
+	// tl.seek("s1_slam_cube")
 
 	return tl;
 
-	// tl.seek("s1_slam_cube")
 }
 
 
@@ -83,17 +78,52 @@ function sceneTwo() {
 	tl.to(leftFace, 1, { transform:"rotateY(-20deg) rotateX(30deg) translateZ(530px)" }, "-=1")
 	tl.to(frontFace, 1, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=1") 
 	tl.to(backFace, 1, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=1")
-	tl.to(cube, 90, { rotationY: '930_cw', rotationX: '30_cw' }, "-=1")
+	tl.call(() => cube.classList.add('faceDetails')); // add hover classes for the faces
+	tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.ease }, "-=1")
 
 	return tl;
 }
 
+// selector
+function runTopFace() {
+	console.log('runTopFace');
+}
+
+// Transition to cube shape
+function transitionToCube() {
+	var tl = new TimelineMax();
+	tl.to(topFace, 0.5, { transform:"rotateX(90deg) translateZ(0px) translateY(-200px)"}, "-=0.5")
+	tl.to(rightFace, 0.5, { transform:"rotateY(90deg) translateZ(200px)"}, "-=0.5")
+	tl.to(bottomFace, 0.5, { transform:"rotateX(-90deg) translateZ(200px)"}, "-=0.5")
+	tl.to(leftFace, 0.5, { transform:"rotateY(-90deg) translateZ(200px)"}, "-=0.5")
+	tl.to(frontFace, 0.5, { transform:"translateZ(200px)"}, "-=0.5") 
+	tl.to(backFace, 0.5, { transform: "rotateY(180deg) translateZ(200px)"}, "-=0.5")
+	return tl;
+}
+
+// Transition to cube shape
+function transitionToScatter() {
+	var tl = new TimelineMax();
+	tl.to(cube, 0.2, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" })
+	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '930_cw', scale: 1.5, y: -190 }, "-=0.5")
+	tl.to(topFace, 0.5, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=0.5")
+	tl.to(rightFace, 0.5, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=0.5")
+	tl.to(bottomFace, 0.5, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
+	tl.to(leftFace, 0.5, { transform:"rotateY(-20deg) rotateX(30deg) translateZ(530px)" }, "-=0.5")
+	tl.to(frontFace, 0.5, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=0.5") 
+	tl.to(backFace, 0.5, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=0.5")
+	tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.ease }, "-=0.5");
+	return tl;
+}
+
+topFace.addEventListener('click', transitionToCube)
+backFace.addEventListener('click', transitionToScatter)
 
 // Create a master timeline
 var master = new TimelineMax()
 // add scene one to the master
 .add(sceneOne(), "scene1")
-// .add(sceneTwo(), "scene2");
+.add(sceneTwo(), "scene2");
 
 // master.seek("scene2")
 
