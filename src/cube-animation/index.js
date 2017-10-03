@@ -79,6 +79,7 @@ function sceneTwo() {
 	tl.to(frontFace, 1, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=1") 
 	tl.to(backFace, 1, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=1")
 	tl.call(() => cube.classList.add('faceDetails')); // add hover classes for the faces
+	tl.call(() => transitionToLiving())
 	tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.ease }, "-=1")
 
 	return tl;
@@ -112,12 +113,31 @@ function transitionToScatter() {
 	tl.to(leftFace, 0.5, { transform:"rotateY(-20deg) rotateX(30deg) translateZ(530px)" }, "-=0.5")
 	tl.to(frontFace, 0.5, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=0.5") 
 	tl.to(backFace, 0.5, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=0.5")
-	tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.ease }, "-=0.5");
+	tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.none }, "-=0.5");
 	return tl;
 }
 
+
+function transitionToLiving() {
+	console.log('Clicked')
+	var tl = new TimelineMax();
+	tl.to(cube, 0.2, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" })
+	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '930_cw', scale: 1.5, y: -190 }, "-=0.5")
+	tl.to(topFace, 0.5, { transformOrigin: "center center", transform:"rotateX(80deg) rotateY(-20deg) rotate(-100deg) translateZ(-500px) translateY(-500px) translateX(1000px)" }, "-=0.5")
+	// tl.to(rightFace, 0.5, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px)" }, "-=0.5")
+	// tl.to(bottomFace, 0.5, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
+	// tl.to(leftFace, 0.5, { transform:"rotateY(-20deg) rotateX(30deg) translateZ(530px)" }, "-=0.5")
+	// tl.to(frontFace, 0.5, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=0.5") 
+	// tl.to(backFace, 0.5, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=0.5")
+	// tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.none }, "-=0.5");
+	return tl;
+
+}
+
+// Event listeners
 topFace.addEventListener('click', transitionToCube)
 backFace.addEventListener('click', transitionToScatter)
+rightFace.addEventListener('click', transitionToLiving)
 
 // Create a master timeline
 var master = new TimelineMax()
@@ -125,7 +145,7 @@ var master = new TimelineMax()
 .add(sceneOne(), "scene1")
 .add(sceneTwo(), "scene2");
 
-// master.seek("scene2")
+master.seek("scene2")
 
 // 
 // SCENE 1
