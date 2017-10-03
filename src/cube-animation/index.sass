@@ -31,28 +31,55 @@ body
   backface-visibility: visible
   opacity: 0.5
   border: 1px solid black
+  cursor: pointer
+  display: flex
+  align-items: center
+  justify-content: center
 
 .bottom
   transform: rotateY(90deg) translateZ(190px)
-
 .front
   transform: translateZ(200px)
-
 .back
   transform: rotateY(180deg) translateZ(200px)
-
 .right
   transform: rotateY(90deg) translateZ(200px)
-
 .left
   transform: rotateY(-90deg) translateZ(200px)
-
 .top
   transform: rotateX(90deg) translateZ(0px) translateY(-200px)
   transform-origin: 0% 0%
-
 .bottom
   transform: rotateX(-90deg) translateZ(200px)
+
+.faceDetails
+  font-size: 6em
+  color: white
+  .bottom
+    &:hover
+      background-color: red
+  .front
+    &:hover
+      background-color: tan
+  .back
+    &:before
+      content: 'Scatter'
+    &:hover
+      background-color: pink
+  .right
+    &:hover
+      background-color: blue
+  .left
+    &:hover
+      background-color: #21d639
+  .top
+    &:before
+      content: 'Cube'
+    &:hover
+      background-color: #7921d6 // purple
+  .bottom
+    &:hover
+      background-color: #d66621 //salmon
 
 .copyContainer
   position: absolute
