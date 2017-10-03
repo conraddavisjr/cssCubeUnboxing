@@ -93,12 +93,14 @@ function runTopFace() {
 // Transition to cube shape
 function transitionToCube() {
 	var tl = new TimelineMax();
+	tl.to([topFace, rightFace, bottomFace, leftFace, frontFace, backFace], 0.5, {opacity: 0.5})
 	tl.to(topFace, 0.5, { transform:"rotateX(90deg) translateZ(0px) translateY(-200px)"}, "-=0.5")
 	tl.to(rightFace, 0.5, { transform:"rotateY(90deg) translateZ(200px)"}, "-=0.5")
 	tl.to(bottomFace, 0.5, { transform:"rotateX(-90deg) translateZ(200px)"}, "-=0.5")
 	tl.to(leftFace, 0.5, { transform:"rotateY(-90deg) translateZ(200px)"}, "-=0.5")
 	tl.to(frontFace, 0.5, { transform:"translateZ(200px)"}, "-=0.5") 
 	tl.to(backFace, 0.5, { transform: "rotateY(180deg) translateZ(200px)"}, "-=0.5")
+	tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.ease }, "-=1")
 	return tl;
 }
 
@@ -107,6 +109,7 @@ function transitionToScatter() {
 	var tl = new TimelineMax();
 	tl.to(cube, 0.2, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" })
 	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '930_cw', scale: 1.5, y: -190 }, "-=0.5")
+	tl.to([topFace, rightFace, bottomFace, leftFace, frontFace, backFace], 0.5, {opacity: 0.5}, "-=0.5")
 	tl.to(topFace, 0.5, { transform:"rotateX(120deg) translateZ(490px) translateY(-415px) translateX(-100px)" }, "-=0.5")
 	tl.to(rightFace, 0.5, { transform:"rotateY(90deg) rotateX(-40deg) translateZ(-340px) translateY(-220px) translateX(0px)" }, "-=0.5")
 	tl.to(bottomFace, 0.5, { transform:"rotateX(-150deg) rotateY(77deg) translateZ(680px) translateY(100px)" }, "-=0.5")
@@ -119,10 +122,10 @@ function transitionToScatter() {
 
 
 function transitionToLiving() {
-	console.log('Clicked')
 	var tl = new TimelineMax();
 	tl.to(cube, 0.2, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" })
 	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '930_cw', scale: 1.5, y: -190 }, "-=0.5")
+	tl.to([topFace, rightFace, bottomFace, leftFace, backFace], 0.5, {opacity: 0.1}, "-=0.5")
 	tl.to(topFace, 0.5, { transform:"rotateX(80deg) rotateY(-20deg) rotate(-100deg) translateZ(-500px) translateY(-500px) translateX(1000px)" }, "-=0.5")
 	tl.to(rightFace, 0.5, { transform:"rotateY(0deg) rotateX(50deg) translateZ(-1500px) translateY(100px) translateX(-1000px)" }, "-=0.5")
 	tl.to(bottomFace, 0.5, { transform:"rotateX(0deg) rotateY(0deg) translateZ(-1080px) translateY(1000px)" }, "-=0.5")
