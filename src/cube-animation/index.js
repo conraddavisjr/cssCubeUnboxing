@@ -29,7 +29,6 @@ var elementsPlaceholder = document.querySelector('.elementsPlaceholder');
 
 function sceneOne() {
 	var tl = new TimelineMax();
-	
 	// set starting styles
 	tl.set(cube, { transform:"rotateX(180deg) rotateY(100deg)" })
 	tl.set(camera, { transformOrigin:"left center", transform:"scale(1.5) rotateY(0deg) translateX(500px) translateY(10px)" })
@@ -55,9 +54,7 @@ function sceneOne() {
 	tl.to(cube, 0.5, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" }, "-=0.5", "s1_slam_cube")
 
 	// tl.seek("s1_slam_cube")
-
 	return tl;
-
 }
 
 
@@ -67,9 +64,7 @@ function sceneOne() {
 // Make the box explode
 // 
 function sceneTwo() {
-	
 	var tl = new TimelineMax();
-
 	tl.to(copyContainer, 0.5, { opacity: 0 }, "-=1")
 	tl.to(bgImage, 1, {opacity: 1}, "-=1")
 	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '930_cw', scale: 1.5, y: -190 }, "-=1")
@@ -80,10 +75,15 @@ function sceneTwo() {
 	tl.to(frontFace, 1, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=1") 
 	tl.to(backFace, 1, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=1")
 	tl.call(() => cube.classList.add('faceDetails')); // add hover classes for the faces
-	tl.call(() => transitionToLivingRoom())
 	tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.ease }, "-=1")
 	return tl;
 }
+
+
+// 
+// ANIMATION FUNCTIONS
+// 
+// 
 
 // Transition to cube shape
 function transitionToCube() {
@@ -151,6 +151,7 @@ function placeLivingRoomItems() {
 	return tl;
 }
 
+// handle the elements placeholder container visibility
 function elementsPlaceholderVisibility(status) {
 	console.log('elementsPlaceholderVisibility called');
 	var tl = new TimelineMax();
@@ -169,7 +170,7 @@ var master = new TimelineMax()
 .add(sceneOne(), "scene1")
 .add(sceneTwo(), "scene2");
 
-master.seek("scene2")
+// master.seek("scene2")
 
 // 
 // SCENE 1
