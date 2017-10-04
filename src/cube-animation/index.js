@@ -20,6 +20,7 @@ var frontFace = document.querySelector('.front');
 var backFace = document.querySelector('.back');
 var copyContainer = document.querySelector('.copyContainer');
 var bgImage = document.querySelector('.bgImage');
+var elementsPlaceholder = document.querySelector('.elementsPlaceholder');
 
 
 // 
@@ -79,19 +80,14 @@ function sceneTwo() {
 	tl.to(frontFace, 1, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }, "-=1") 
 	tl.to(backFace, 1, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=1")
 	tl.call(() => cube.classList.add('faceDetails')); // add hover classes for the faces
-	tl.call(() => transitionToLiving())
+	tl.call(() => transitionToLivingRoom())
 	tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.ease }, "-=1")
-
 	return tl;
-}
-
-// selector
-function runTopFace() {
-	console.log('runTopFace');
 }
 
 // Transition to cube shape
 function transitionToCube() {
+	elementsPlaceholderVisibility(0)
 	var tl = new TimelineMax();
 	tl.to([topFace, rightFace, bottomFace, leftFace, frontFace, backFace], 0.5, {opacity: 0.5})
 	tl.to(topFace, 0.5, { transform:"rotateX(90deg) translateZ(0px) translateY(-200px)"}, "-=0.5")
@@ -106,6 +102,7 @@ function transitionToCube() {
 
 // Transition to cube shape
 function transitionToScatter() {
+	elementsPlaceholderVisibility(0)
 	var tl = new TimelineMax();
 	tl.to(cube, 0.2, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" })
 	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '930_cw', scale: 1.5, y: -190 }, "-=0.5")
@@ -120,8 +117,8 @@ function transitionToScatter() {
 	return tl;
 }
 
-
-function transitionToLiving() {
+// Transition to the Living room stage
+function transitionToLivingRoom() {
 	var tl = new TimelineMax();
 	tl.to(cube, 0.2, { transform:"rotateX(110deg) rotateY(40deg) translateX(-600px) translateY(1420px) translateZ(-900px)" })
 	tl.to(camera, 1, { rotationX: '-20_ccw', rotationY: '930_cw', scale: 1.5, y: -190 }, "-=0.5")
@@ -132,16 +129,39 @@ function transitionToLiving() {
 	tl.to(leftFace, 0.5, { transform:"rotateY(0deg) rotateX(0deg) translateZ(-1030px) translateY(300px)" }, "-=0.5")
 	tl.to(frontFace, 0.5, { transform:"rotateY(-45deg) translateZ(-430px) translateY(-800px) translateX(700px)" }, "-=0.5") 
 	tl.to(backFace, 0.5, { transform:"rotateY(100deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" }, "-=0.5")
-	tl.to(frontFace, 0.5, { transform:"rotateY(-70deg) translateZ(-700px) translateY(-1000px) translateX(200px) scale(4)" }, "-=0.3") 
-	// tl.to(cube, 90, { repeat: -1, rotationY: '930_cw', rotationX: '30_cw', ease: Linear.none }, "-=0.5");
+	tl.to(frontFace, 0.5, { transform:"rotateY(-70deg) translateZ(-700px) translateY(-1000px) translateX(200px) scale(4)" }, "-=0.3")
+	tl.call(() => placeLivingRoomItems())
 	return tl;
+}
 
+function placeLivingRoomItems() {
+	var sofaStyles = `
+	  width: 130px;
+    position: absolute;
+    left: -250px;
+    top: 720px;
+    transform: rotate(5deg);
+  `
+	elementsPlaceholder.innerHTML = `
+		<div style="${sofaStyles}"><img src="images/sofa.png"/></div>
+	`
+	var tl = new TimelineMax();
+	tl.set(elementsPlaceholder, { opacity: 0 })
+	tl.to(elementsPlaceholder, 0.5, { opacity: 1 })
+	return tl;
+}
+
+function elementsPlaceholderVisibility(status) {
+	console.log('elementsPlaceholderVisibility called');
+	var tl = new TimelineMax();
+	tl.to(elementsPlaceholder, 0.1, {opacity: status})
+	return tl;
 }
 
 // Event listeners
 topFace.addEventListener('click', transitionToCube)
 backFace.addEventListener('click', transitionToScatter)
-frontFace.addEventListener('click', transitionToLiving)
+frontFace.addEventListener('click', transitionToLivingRoom)
 
 // Create a master timeline
 var master = new TimelineMax()
