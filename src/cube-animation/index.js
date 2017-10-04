@@ -39,7 +39,7 @@ function sceneOne() {
 	tl.set(frontFace, { transform:"rotateY(50deg) translateZ(550px) translateY(-40px)" }) 
 	tl.set(backFace, { transform:"rotateY(170deg) rotateX(-20deg) translateZ(480px) translateY(-221px)" });
 	// 
-	tl.to(camera, 1.5, { rotationY: '780_cw', x: "10%", scale: 0.5, transformOrigin:"left center", ease: Linear.easeOut })
+	tl.to(camera, 1.5, { rotationY: '780_cw', x: "10%", scale: 0.5, transformOrigin:"left center", ease: Sine.easeIn })
 	// // transition to cube
 	tl.call(() => transitionToCube())
 	// // shift camera perspective
